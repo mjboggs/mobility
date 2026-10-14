@@ -54,6 +54,10 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
 .wbtns button.ok{background:#16a34a;border-color:#16a34a;color:#fff}
 .wnav{display:flex;justify-content:space-between;width:100%;margin-top:10px}
 .wnav button{background:none;border:0;color:var(--blue);font-size:1rem;padding:10px;cursor:pointer}
+.fig.vid{width:100%;max-width:640px;aspect-ratio:16/9;background:#000;overflow:hidden}
+.fig.vid iframe{width:100%;height:100%;border:0;display:block}
+.vlinks{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:2px 0 6px}
+.vlinks button,.vlinks a{font-size:.95rem;color:var(--blue);background:var(--card);text-decoration:none;border:1px solid var(--line);padding:8px 14px;border-radius:999px;min-height:40px;display:inline-flex;align-items:center;cursor:pointer;font-weight:600}
 </style>
 </head>
 <body>
@@ -235,7 +239,8 @@ function showEx(){
   var dose=z.secs?(z.secs>=60?fmt(z.secs)+" hold":z.secs+" sec"):(typeof z.reps=="number"?z.reps+" reps":z.reps);
   var setTxt=z.sets>1?(z.sets+(z.sets>1?" sets":" set")+(z.sides?" per side":"")):(z.sides?"each side":"");
   var h='<div class="badge '+ex.pri+'">'+PRI[ex.pri].icon+' '+PRI[ex.pri].label+'</div><h2>'+esc(ex.title)+'</h2>'+
-    '<div class="fig">'+figSVG(ex.key)+'</div>'+
+    '<div class="fig" id="wfig">'+figSVG(ex.key)+'</div>'+
+    '<div class="vlinks">'+(ex.id?'<button id="wvid">\u25b6 Watch Video</button><a href="https://www.youtube.com/watch?v='+ex.id+'" target="_blank" rel="noopener">Open in YouTube \u2197</a>':'<a href="https://www.youtube.com/results?search_query='+encodeURIComponent(ex.q)+'" target="_blank" rel="noopener">\u25b6 Find a Video \u2197</a>')+'</div>'+
     '<div class="dose" style="'+(typeof z.reps=="string"?"font-size:1.15rem":"")+'">'+esc(dose)+(setTxt?' <small style="font-size:1rem;color:var(--muted)">× '+setTxt+'</small>':'')+'</div>'+
     '<div class="cue">'+esc(z.cue)+'</div><div class="sets">'+pills+'</div>';
   if(z.secs)h+='<div class="clock" id="wclock">'+fmt(W.left)+'</div><div class="wbtns"><button class="go" id="wtimer">▶ Start Timer</button>'+(n>1?'<button id="wset">✓ Set Done</button>':'')+'</div>';
@@ -263,6 +268,11 @@ function showDone(){
   stopTimer();document.querySelector("#wbar i").style.width="100%";document.getElementById("wstep").textContent=NAMES[W.list]+" · Complete";
   document.getElementById("wbody").innerHTML='<div style="font-size:5rem;margin-top:30px">🎉</div><h2>'+NAMES[W.list]+' complete!</h2><p class="cue">All exercises logged on this phone. Great work — rest, hydrate, and check in on how your feet feel.</p><div class="wbtns"><button class="ok" id="wclose2">Finish</button></div>';
 }
+function toggleVideo(btn){
+  var ex=EXERCISES[W.list][W.i],f=document.getElementById("wfig");
+  if(f.classList.toggle("vid")){f.innerHTML='<iframe title="'+esc(ex.title)+' video" src="https://www.youtube.com/embed/'+ex.id+'?rel=0&playsinline=1&autoplay=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';btn.textContent="\u25a3 Show Graphic";}
+  else{f.innerHTML=figSVG(ex.key);btn.textContent="\u25b6 Watch Video";}
+}
 document.addEventListener("click",function(e){
   var t=e.target.closest&&e.target.closest("button");if(!t)return;
   if(t.dataset.start)startWiz(t.dataset.start);
@@ -272,6 +282,7 @@ document.addEventListener("click",function(e){
   else if(t.id=="wnext")logEx();
   else if(t.id=="wskip"){W.i++;W.set=0;showEx();}
   else if(t.id=="wprev"){W.i--;W.set=0;showEx();}
+  else if(t.id=="wvid")toggleVideo(t);
 });
 render();
 </script>
