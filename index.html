@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Mobility"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#2563eb"><link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADdElEQVR4nO3d0W3bMBSGUabICF0hXSwdq5N1hXSIPhgwDKS/68gSRV7e8xwEF76fKMMxope3948G//Lt7AEYlziIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQfR69gAn+/3r+/0f+PHzT59JBvSy4BeM/xtEslooa8WxOYtb6ySyRBy7NPFZ+UrqvyE9qIxDf/MgKp8c3ZZX9Qgpe3L0vKyrHiE14+i/rZJ9FIzjrD3V76NaHOduqFgfpeIYYTcjzLCXOnGMs5VxJnlSkThG28do82xTIY4xNzHmVF9SIQ4OMn0cI1+gI8/2iLnjGP/VH3/CO+aOg0OJg2jiOGY5sWeZ87OJ4+Bos8Yx1+U417RXs8ZBB+IgEgfRlHHMeAufceYp46APcRCJg0gcROIgEgeROIjEQSQOInEQTRnHjP/yYMaZp4yDPsRBJA6iWeOY6xY+17RXs8ZBBxPHMcvlOMucn00cB0cTB9HccYx/Yo8/4R1zx9HGfvVHnu0R08fBcSrEMeYFOuZUX1IhjjbeJkabZ5sicbSR9jHOJE+qE0cbYysjzLCXUnG0s3dTqYxWL4523oaKldFKxtHO2FO9MlrVOFrfbZUso9V+jNfFof/7oGoWF2VPjqvj9le7jLbCyXHLc2W/ZK04LjyR+kErxnHLs+zvWD0O7qj/hpTNxEEkDiJxEImDSBxE4iASB9Hr2QOcwMfnD1roE9Id/3a/SCWr3Fb2/VbHjM/H2KD+yeHLPpsVPzmOvsRrHyGV4+izucJ9VI6DJ5WNo+cFXfXwqBlH/22V7KNmHOxCHEQF4zjrhK93ZykYB3sRB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxEBeM460HA9R5AXDAO9iIOoppx9D/h691TWtU4Wt9tlSyjFY6D51WOo88FXfXYaLXjaMdvrnAZrbWXt/ePs2foYfcnAtfO4qL4yXG17y5XKKOtc3Lc2nyKLNLE1Ypx8KBVbitsIA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDqK/qf65G4gXJ6kAAAAASUVORK5CYII="><title>ALD Mobility Companion V7</title>
+<style>
+:root{--blue:#2563eb;--cyan:#06b6d4;--bg:#eef4f8;--card:#fff;--text:#0f172a;--muted:#475569;--line:#dbe3ea}
+@media (prefers-color-scheme:dark){:root{--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--line:#334155}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);margin:0;line-height:1.5}
+header{padding-top:max(24px,env(safe-area-inset-top))!important;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;padding:24px 16px}
+header h1{margin:0 0 4px;font-size:1.6rem}
+header p{margin:0;opacity:.95}
+nav{position:sticky;top:0;z-index:10;background:var(--card);padding:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;padding:10px 4px;border-radius:10px;font-size:.85rem;font-weight:600}
+.card{background:var(--card);margin:12px;padding:16px;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.card h2{margin-top:0}
+.exercise{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.exercise h3{margin:0 0 8px}
+.video{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.links a{font-size:.85rem;color:var(--blue);text-decoration:none;border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+.video{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-top:8px}.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.btn{font-size:.95rem;color:var(--blue);text-decoration:none;border:1px solid var(--line);padding:10px 14px;border-radius:999px;min-height:44px;display:inline-flex;align-items:center}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600}.row{display:flex;align-items:center;gap:10px}.row input{width:24px;height:24px;flex:none}.row h3{margin:0}.banner{display:none;margin:12px;padding:12px 14px;border-radius:12px;background:#fef3c7;color:#78350f;font-size:.9rem}
+.priority li a{color:var(--blue)}
+.top{display:inline-block;margin-top:12px;color:var(--blue)}
+</style>
+</head>
+<body>
+<header id="top">
+  <h1>ALD Mobility Companion</h1>
+  <p>Designed for Balance, Foot Drop, Strength, and Recovery</p>
+</header>
+
+<nav>
+  <a href="#daya">Day A</a>
+  <a href="#dayb">Day B</a>
+  <a href="#recovery">Sunday</a>
+  <a href="#booster">Foot Booster</a>
+</nav>
+
+<div class="card">
+  <h2>Safety First</h2><p style="margin-top:0;color:var(--muted)">Tap the box next to an exercise when you finish it (saved on this phone).</p>
+  <ul>
+    <li>Use a wall, counter, or sturdy chair for support.</li>
+    <li>Use the cane whenever needed.</li>
+    <li>Stop if dizzy or unusually fatigued.</li>
+    <li>Quality is more important than intensity.</li>
+  </ul>
+</div>
+
+<div id="daya" class="card"><h2>Day A: Balance &amp; Walking</h2><div data-list="dayA"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="dayb" class="card"><h2>Day B: Strength &amp; Stability</h2><div data-list="dayB"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="recovery" class="card"><h2>Sunday Recovery</h2><div data-list="recovery"></div><a class="top" href="#top">Back to Top</a></div>
+
+<div id="booster" class="card">
+  <h2>Daily Foot Booster (5 Minutes)</h2>
+  <ul>
+    <li>Toe Raises × 20</li>
+    <li>Band Dorsiflexion × 15</li>
+    <li>Supported Marching × 20 Steps</li>
+    <li>Toe Taps × 30 Seconds</li>
+  </ul>
+  <h3>Highest Priority Videos</h3>
+  <ol class="priority" id="priorityList"></ol>
+  <a class="top" href="#top">Back to Top</a>
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+   EDIT HERE: to swap a video, replace its id (the 11 characters after
+   "v=" in a YouTube link). Leave id as "" to show only the search link.
+------------------------------------------------------------------- */
+var EXERCISES = {
+  dayA: [
+    {key:"mountain",  title:"Mountain Pose",                id:"S08rkqIegMo", q:"mountain pose tadasana beginner seated or supported"},
+    {key:"tree",      title:"Tree Pose",                    id:"3C1DR5ntKZU", q:"tree pose vrksasana with wall support balance"},
+    {key:"warrior2",  title:"Warrior II",                   id:"RQJ0biC6HFA", q:"warrior 2 pose chair supported"},
+    {key:"toetaps",   title:"Toe Taps / Balance Training",  id:"BGgd0giD2J0", q:"standing toe taps balance exercise seniors"},
+    {key:"heelwalk",  title:"Heel Walking",                 id:"bklDcOaGW7U", q:"heel walking exercise foot drop"},
+    {key:"footdrop",  title:"Foot Drop Exercise Program",   id:"ODwkTjR1jYE", q:"foot drop exercises physical therapy"}
+  ],
+  dayB: [
+    {key:"anklepump", title:"Ankle Pumps",                  id:"pGGqm08pVuU", q:"ankle pumps exercise"},
+    {key:"sitstand",  title:"Sit-to-Stand",                 id:"eutszbtbJM8", q:"sit to stand exercise physical therapy"},
+    {key:"warrior1",  title:"Warrior I",                    id:"2YekJNBHIdo", q:"warrior 1 pose chair supported"},
+    {key:"bridge",    title:"Bridge Pose",                  id:"wF_Zr1Bqf60", q:"glute bridge exercise beginners"},
+    {key:"birddog",   title:"Bird Dog",                     id:"xEDnlOxeJH4", q:"bird dog exercise beginners"},
+    {key:"dorsi",     title:"Resistance Band Dorsiflexion", id:"5YUh4lOQ2pI", q:"resistance band ankle dorsiflexion exercise"},
+    {key:"evert",     title:"Resistance Band Eversion",     id:"xfrncpP5ONQ", q:"resistance band ankle eversion exercise"}
+  ],
+  recovery: [
+    {key:"catcow",    title:"Cat-Cow",                      id:"y39PrKY_4JM", q:"seated cat cow stretch"},
+    {key:"hamstring", title:"Seated Hamstring Stretch",     id:"1rscgJNW27g", q:"seated hamstring stretch"},
+    {key:"twist",     title:"Seated Spinal Twist",          id:"Zhw5yeqpQVo", q:"seated spinal twist stretch"},
+    {key:"calf",      title:"Standing Calf Stretch",        id:"mafo7o7OnFo", q:"standing calf stretch at wall"},
+    {key:"legsup",    title:"Legs Up The Wall",             id:"2G7p_fraD-k", q:"legs up the wall pose"}
+  ]
+};
+var PRIORITY = ["dorsi","footdrop","heelwalk","tree","birddog","bridge"];
+
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]});}
+
+function render(){
+  Object.keys(EXERCISES).forEach(function(listName){
+    var host=document.querySelector('[data-list="'+listName+'"]');
+    host.innerHTML=EXERCISES[listName].map(function(ex){
+      var search="https://www.youtube.com/results?search_query="+encodeURIComponent(ex.q);
+      var video="",btns='<a class="btn primary" href="'+search+'" target="_blank" rel="noopener">Find another video</a>';
+      if(ex.id){
+        video='<div class="video"><iframe title="'+esc(ex.title)+' video" loading="lazy" src="https://www.youtube.com/embed/'+ex.id+'?rel=0&playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>';
+        btns='<a class="btn primary" href="https://www.youtube.com/watch?v='+ex.id+'" target="_blank" rel="noopener">&#9654; Open in YouTube</a><a class="btn" href="'+search+'" target="_blank" rel="noopener">Find another</a>';
+      }
+      var done=localStorage_get(ex.key)?' checked':'';
+      return '<div class="exercise" id="ex-'+ex.key+'"><label class="row"><input type="checkbox" data-k="'+ex.key+'"'+done+'><h3>'+esc(ex.title)+'</h3></label>'+video+'<div class="links">'+btns+'</div></div>';
+    }).join("");
+  });
+  var byKey={};
+  Object.keys(EXERCISES).forEach(function(l){EXERCISES[l].forEach(function(e){byKey[e.key]=e;});});
+  document.getElementById("priorityList").innerHTML=PRIORITY.map(function(k){
+    return '<li><a href="#ex-'+k+'">'+esc(byKey[k].title)+'</a></li>';
+  }).join("");
+  document.addEventListener("change",function(e){
+    var k=e.target.getAttribute&&e.target.getAttribute("data-k");
+    if(k){localStorage_set(k,e.target.checked?"1":"");}
+  });
+}
+function localStorage_get(k){try{return window.localStorage.getItem("mob_"+k);}catch(e){return "";}}
+function localStorage_set(k,v){try{window.localStorage.setItem("mob_"+k,v);}catch(e){}}
+render();
+</script>
+</body>
+</html>
