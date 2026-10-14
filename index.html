@@ -27,6 +27,33 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
 .video{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-top:8px}.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.badge{display:inline-block;margin:6px 0 0;padding:3px 10px;border-radius:999px;font-size:.78rem;font-weight:700;color:#0f172a}.badge.bal{background:#bfdbfe}.badge.fd{background:#bbf7d0}.badge.st{background:#e9d5ff}.badge.rc{background:#fef08a}.rx{margin:8px 0;padding:10px 12px;border-radius:12px;background:rgba(37,99,235,.08);font-size:.95rem}.rx ul{margin:4px 0 0;padding-left:20px}.safety{border-left:5px solid #dc2626}.safety li{margin:6px 0;list-style:none}.safety ul{padding-left:0}.legend{display:flex;flex-wrap:wrap;gap:6px;margin:12px}.boost li{list-style:none;margin:6px 0;font-size:1.05rem}.boost ul{padding-left:0}.btn{font-size:.95rem;color:var(--blue);text-decoration:none;border:1px solid var(--line);padding:10px 14px;border-radius:999px;min-height:44px;display:inline-flex;align-items:center}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600}.row{display:flex;align-items:center;gap:10px}.row input{width:24px;height:24px;flex:none}.row h3{margin:0}.banner{display:none;margin:12px;padding:12px 14px;border-radius:12px;background:#fef3c7;color:#78350f;font-size:.9rem}
 .priority li a{color:var(--blue)}
 .top{display:inline-block;margin-top:12px;color:var(--blue)}
+
+.start{display:flex;width:100%;justify-content:center;margin:4px 0 8px;font-size:1.05rem;cursor:pointer}
+#wiz{display:none;position:fixed;inset:0;z-index:100;background:var(--bg);flex-direction:column;overflow-y:auto}
+#wiz.on{display:flex}
+#wbar{position:sticky;top:0;height:10px;background:var(--line);flex:none;z-index:2}
+#wbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .35s}
+.whead{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;padding-top:max(10px,env(safe-area-inset-top));color:var(--muted);font-size:.9rem}
+.whead button{background:none;border:0;color:var(--muted);font-size:1.5rem;padding:4px 8px;cursor:pointer}
+.wbody{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 16px 16px;max-width:640px;width:100%;margin:0 auto;text-align:center}
+.wbody h2{margin:0 0 4px;font-size:1.6rem}
+.fig{width:min(100%,42vh);aspect-ratio:1;background:var(--card);border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,.1);margin:8px 0}
+.fig svg{width:100%;height:100%;display:block}
+.fig .arw{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.cue{color:var(--muted);margin:4px 0 10px;font-size:.98rem}
+.dose{font-size:2rem;font-weight:800;margin:4px 0}
+.sets{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0 12px}
+.sets span{min-width:44px;padding:6px 10px;border-radius:999px;border:2px solid var(--line);font-weight:700;font-size:.85rem}
+.sets span.done{background:#16a34a;border-color:#16a34a;color:#fff}
+.sets span.cur{border-color:var(--blue)}
+.clock{font-size:3rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.wbtns{display:flex;gap:10px;width:100%;margin-top:12px}
+.wbtns button{flex:1;min-height:56px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--text);font-size:1.1rem;font-weight:700;cursor:pointer}
+.wbtns button.go{background:var(--blue);border-color:var(--blue);color:#fff}
+.wbtns button.ok{background:#16a34a;border-color:#16a34a;color:#fff}
+.wnav{display:flex;justify-content:space-between;width:100%;margin-top:10px}
+.wnav button{background:none;border:0;color:var(--blue);font-size:1rem;padding:10px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -56,9 +83,9 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
 </div>
 <div class="legend"><span class="badge bal">🟦 Balance</span><span class="badge fd">🟩 Foot Drop</span><span class="badge st">🟪 Strength</span><span class="badge rc">🟨 Recovery</span></div>
 
-<div id="daya" class="card"><h2>Day A: Balance &amp; Walking</h2><div data-list="dayA"></div><a class="top" href="#top">Back to Top</a></div>
-<div id="dayb" class="card"><h2>Day B: Strength &amp; Stability</h2><div data-list="dayB"></div><a class="top" href="#top">Back to Top</a></div>
-<div id="recovery" class="card"><h2>Sunday Recovery</h2><div data-list="recovery"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="daya" class="card"><h2>Day A: Balance &amp; Walking</h2><button class="btn primary start" data-start="dayA">&#9654; Start Guided Workout</button><div data-list="dayA"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="dayb" class="card"><h2>Day B: Strength &amp; Stability</h2><button class="btn primary start" data-start="dayB">&#9654; Start Guided Workout</button><div data-list="dayB"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="recovery" class="card"><h2>Sunday Recovery</h2><button class="btn primary start" data-start="recovery">&#9654; Start Guided Workout</button><div data-list="recovery"></div><a class="top" href="#top">Back to Top</a></div>
 
 <div id="booster" class="card">
   <h2>Daily Foot Booster (5 Minutes)</h2>
@@ -73,6 +100,11 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
   <a class="top" href="#top">Back to Top</a>
 </div>
 
+<div id="wiz" role="dialog" aria-modal="true"><div id="wbar"><i></i></div>
+  <div class="whead"><span id="wstep"></span><button id="wclose" aria-label="Exit workout">&times;</button></div>
+  <div class="wbody" id="wbody"></div>
+</div>
+
 <script>
 /* ------------------------------------------------------------------
    EDIT HERE: to swap a video, replace its id (the 11 characters after
@@ -80,28 +112,28 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
 ------------------------------------------------------------------- */
 var EXERCISES = {
   dayA: [
-    {key:"mountain",title:"Mountain Pose",id:"S08rkqIegMo",q:"mountain pose tadasana beginner seated or supported",pri:"bal",rx:["Hold 60 seconds", "1 round"]},
-    {key:"tree",title:"Tree Pose",id:"3C1DR5ntKZU",q:"tree pose vrksasana with wall support balance",pri:"bal",rx:["3 holds per side", "Hold 15-20 seconds each", "Use wall support if needed"]},
-    {key:"warrior2",title:"Warrior II",id:"RQJ0biC6HFA",q:"warrior 2 pose chair supported",pri:"bal",rx:["2 rounds per side", "Hold 20 seconds"]},
-    {key:"toetaps",title:"Toe Taps",id:"BGgd0giD2J0",q:"standing toe taps balance exercise seniors",pri:"fd",rx:["3 rounds", "30 seconds each"]},
-    {key:"heelwalk",title:"Heel Walking",id:"bklDcOaGW7U",q:"heel walking exercise foot drop",pri:"fd",rx:["3 rounds", "10-20 seconds each", "Hold counter or wall if needed"]},
-    {key:"footdrop",title:"Foot Drop Exercise Program",id:"ODwkTjR1jYE",q:"foot drop exercises physical therapy",pri:"fd",rx:["Follow video instructions", "Goal: Toe Raises \u00d7 20", "Goal: Supported Marching \u00d7 20 steps", "Goal: Dorsiflexion \u00d7 15 reps"]}
+    {key:"mountain",title:"Mountain Pose",id:"S08rkqIegMo",q:"mountain pose tadasana beginner seated or supported",pri:"bal",wz:{sets:1,secs:60,cue:"Feet hip-width, weight even, knees soft, crown of head tall. Breathe slowly."},rx:["Hold 60 seconds", "1 round"]},
+    {key:"tree",title:"Tree Pose",id:"3C1DR5ntKZU",q:"tree pose vrksasana with wall support balance",pri:"bal",wz:{sets:3,secs:20,sides:1,cue:"Hand on the wall. Place foot on ankle or calf (never the knee). Eyes on a fixed point."},rx:["3 holds per side", "Hold 15-20 seconds each", "Use wall support if needed"]},
+    {key:"warrior2",title:"Warrior II",id:"RQJ0biC6HFA",q:"warrior 2 pose chair supported",pri:"bal",wz:{sets:2,secs:20,sides:1,cue:"Wide stance, front knee bent over ankle, arms level with shoulders, gaze over front hand."},rx:["2 rounds per side", "Hold 20 seconds"]},
+    {key:"toetaps",title:"Toe Taps",id:"BGgd0giD2J0",q:"standing toe taps balance exercise seniors",pri:"fd",wz:{sets:3,secs:30,cue:"Hold the counter. Lift the foot and tap the toe on a low step, then return. Alternate feet."},rx:["3 rounds", "30 seconds each"]},
+    {key:"heelwalk",title:"Heel Walking",id:"bklDcOaGW7U",q:"heel walking exercise foot drop",pri:"fd",wz:{sets:3,secs:20,cue:"Lift toes high and walk on heels with short steps. Keep a hand on the counter or wall."},rx:["3 rounds", "10-20 seconds each", "Hold counter or wall if needed"]},
+    {key:"footdrop",title:"Foot Drop Exercise Program",id:"ODwkTjR1jYE",q:"foot drop exercises physical therapy",pri:"fd",wz:{sets:1,reps:"Toe Raises \u00d7 20 \u00b7 Marching \u00d7 20 \u00b7 Dorsiflexion \u00d7 15",cue:"Pull the toes up toward the shin with control. Quality over quantity."},rx:["Follow video instructions", "Goal: Toe Raises \u00d7 20", "Goal: Supported Marching \u00d7 20 steps", "Goal: Dorsiflexion \u00d7 15 reps"]}
   ],
   dayB: [
-    {key:"anklepump",title:"Ankle Pumps",id:"pGGqm08pVuU",q:"ankle pumps exercise",pri:"fd",rx:["20 repetitions"]},
-    {key:"sitstand",title:"Sit-to-Stand",id:"eutszbtbJM8",q:"sit to stand exercise physical therapy",pri:"st",rx:["2 sets of 10"]},
-    {key:"warrior1",title:"Warrior I",id:"2YekJNBHIdo",q:"warrior 1 pose chair supported",pri:"bal",rx:["2 rounds per side", "Hold 30 seconds"]},
-    {key:"bridge",title:"Bridge Pose",id:"wF_Zr1Bqf60",q:"glute bridge exercise beginners",pri:"st",rx:["2 sets of 10", "Hold 3 seconds at top"]},
-    {key:"birddog",title:"Bird Dog",id:"xEDnlOxeJH4",q:"bird dog exercise beginners",pri:"st",rx:["8 repetitions each side"]},
-    {key:"dorsi",title:"Resistance Band Dorsiflexion",id:"5YUh4lOQ2pI",q:"resistance band ankle dorsiflexion exercise",pri:"fd",rx:["2 sets of 15"]},
-    {key:"evert",title:"Resistance Band Eversion",id:"xfrncpP5ONQ",q:"resistance band ankle eversion exercise",pri:"fd",rx:["2 sets of 15"]}
+    {key:"anklepump",title:"Ankle Pumps",id:"pGGqm08pVuU",q:"ankle pumps exercise",pri:"fd",wz:{sets:1,reps:20,cue:"Legs straight. Pull toes toward you, then point them away. Slow and full range."},rx:["20 repetitions"]},
+    {key:"sitstand",title:"Sit-to-Stand",id:"eutszbtbJM8",q:"sit to stand exercise physical therapy",pri:"st",wz:{sets:2,reps:10,cue:"Scoot forward, feet under knees, nose over toes, then push through the heels to stand."},rx:["2 sets of 10"]},
+    {key:"warrior1",title:"Warrior I",id:"2YekJNBHIdo",q:"warrior 1 pose chair supported",pri:"bal",wz:{sets:2,secs:30,sides:1,cue:"Front knee bent over ankle, back leg straight, hips facing forward, arms reach up."},rx:["2 rounds per side", "Hold 30 seconds"]},
+    {key:"bridge",title:"Bridge Pose",id:"wF_Zr1Bqf60",q:"glute bridge exercise beginners",pri:"st",wz:{sets:2,reps:10,cue:"Feet flat, knees bent. Squeeze glutes and lift hips; hold 3 seconds at the top."},rx:["2 sets of 10", "Hold 3 seconds at top"]},
+    {key:"birddog",title:"Bird Dog",id:"xEDnlOxeJH4",q:"bird dog exercise beginners",pri:"st",wz:{sets:1,reps:8,sides:1,cue:"Hands under shoulders, knees under hips. Reach opposite arm and leg long; keep back flat."},rx:["8 repetitions each side"]},
+    {key:"dorsi",title:"Resistance Band Dorsiflexion",id:"5YUh4lOQ2pI",q:"resistance band ankle dorsiflexion exercise",pri:"fd",wz:{sets:2,reps:15,cue:"Band around the top of the foot, anchored in front. Pull toes toward you against the band."},rx:["2 sets of 15"]},
+    {key:"evert",title:"Resistance Band Eversion",id:"xfrncpP5ONQ",q:"resistance band ankle eversion exercise",pri:"fd",wz:{sets:2,reps:15,cue:"Band around the forefoot. Turn the sole of the foot outward, keeping the heel still."},rx:["2 sets of 15"]}
   ],
   recovery: [
-    {key:"catcow",title:"Cat-Cow",id:"y39PrKY_4JM",q:"seated cat cow stretch",pri:"rc",rx:["10 repetitions"]},
-    {key:"hamstring",title:"Hamstring Stretch",id:"1rscgJNW27g",q:"seated hamstring stretch",pri:"rc",rx:["Hold 30 seconds each side"]},
-    {key:"twist",title:"Seated Twist",id:"Zhw5yeqpQVo",q:"seated spinal twist stretch",pri:"rc",rx:["Hold 30 seconds each side"]},
-    {key:"calf",title:"Standing Calf Stretch",id:"mafo7o7OnFo",q:"standing calf stretch at wall",pri:"rc",rx:["Hold 30 seconds each side"]},
-    {key:"legsup",title:"Legs Up the Wall",id:"2G7p_fraD-k",q:"legs up the wall pose",pri:"rc",rx:["Hold 5 minutes"]}
+    {key:"catcow",title:"Cat-Cow",id:"y39PrKY_4JM",q:"seated cat cow stretch",pri:"rc",wz:{sets:1,reps:10,cue:"Round the back up (cat), then let the belly drop and lift the chest (cow). Move with the breath."},rx:["10 repetitions"]},
+    {key:"hamstring",title:"Hamstring Stretch",id:"1rscgJNW27g",q:"seated hamstring stretch",pri:"rc",wz:{sets:1,secs:30,sides:1,cue:"Sit tall at chair edge, one heel forward with toes up. Hinge forward from the hips with a long back."},rx:["Hold 30 seconds each side"]},
+    {key:"twist",title:"Seated Twist",id:"Zhw5yeqpQVo",q:"seated spinal twist stretch",pri:"rc",wz:{sets:1,secs:30,sides:1,cue:"Sit tall, then rotate the chest toward one side. Hand on opposite knee, other hand on the chair back."},rx:["Hold 30 seconds each side"]},
+    {key:"calf",title:"Standing Calf Stretch",id:"mafo7o7OnFo",q:"standing calf stretch at wall",pri:"rc",wz:{sets:1,secs:30,sides:1,cue:"Hands on wall, back leg straight with heel down, front knee bent. Lean in gently."},rx:["Hold 30 seconds each side"]},
+    {key:"legsup",title:"Legs Up the Wall",id:"2G7p_fraD-k",q:"legs up the wall pose",pri:"rc",wz:{sets:1,secs:300,cue:"Hips close to the wall, legs resting up the wall, arms relaxed. Breathe slowly."},rx:["Hold 5 minutes"]}
   ]
 };
 var PRI={bal:{label:"Balance Priority",icon:"🟦"},fd:{label:"Foot Drop Priority",icon:"🟩"},st:{label:"Strength Priority",icon:"🟪"},rc:{label:"Recovery Priority",icon:"🟨"}};
@@ -135,6 +167,112 @@ function render(){
 }
 function localStorage_get(k){try{return window.localStorage.getItem("mob_"+k);}catch(e){return "";}}
 function localStorage_set(k,v){try{window.localStorage.setItem("mob_"+k,v);}catch(e){}}
+/* ------------------------------------------------------------------
+   FORM GRAPHICS: stick figures in a 200x200 box (ground at y=180).
+   Points: h=head n=neck p=hips, l = far side, r = near side; elbow(e) hand(h) knee(k) foot(f).
+------------------------------------------------------------------- */
+var STAND={h:[100,40],n:[100,60],p:[100,110],le:[90,85],lh:[88,110],re:[110,85],rh:[112,110],lk:[93,145],lf:[91,180],rk:[107,145],rf:[109,180]};
+function pose(o){var r={};for(var k in STAND)r[k]=STAND[k];for(k in o)r[k]=o[k];return r;}
+var QUAD={h:[52,98],n:[70,110],p:[135,110],le:[70,145],lh:[70,178],re:[72,145],rh:[74,178],lk:[135,178],lf:[175,178],rk:[137,178],rf:[177,178]};
+var FIGS={
+  mountain:pose({}),
+  tree:pose({le:[78,82],lh:[60,92],re:[112,80],rh:[102,72],rk:[128,128],rf:[100,150],props:{wall:58}}),
+  warrior2:pose({p:[100,118],le:[72,62],lh:[42,62],re:[128,62],rh:[158,62],lk:[66,142],lf:[62,180],rk:[132,150],rf:[152,180]}),
+  toetaps:pose({h:[92,40],n:[92,60],p:[92,110],le:[78,85],lh:[60,100],re:[96,85],rh:[94,108],lk:[92,145],lf:[92,180],rk:[116,138],rf:[138,160],props:{counter:62,step:[125,45,18]},arrows:[[150,130,150,150]]}),
+  heelwalk:pose({lk:[86,145],lf:[80,178],rk:[112,145],rf:[120,178],toes:[[80,178,94,166],[120,178,134,166]],props:{counter:58},le:[78,85],lh:[60,100],arrows:[[120,30,165,30]]}),
+  footdrop:pose({lk:[97,145],lf:[96,178],rk:[103,145],rf:[104,178],toes:[[96,178,110,164],[104,178,118,164]],le:[80,85],lh:[60,100],props:{counter:58},arrows:[[132,176,132,150]]}),
+  anklepump:{h:[68,86],n:[72,106],p:[70,162],le:[62,135],lh:[52,162],re:[66,135],rh:[56,162],lk:[112,164],lf:[155,166],rk:[114,164],rf:[157,166],toes:[[157,166,166,148]],props:{mat:1},arrows:[[178,140,172,170],[172,170,178,140]]},
+  sitstand:{h:[124,58],n:[110,76],p:[86,120],le:[126,92],lh:[148,94],re:[128,92],rh:[150,96],lk:[118,134],lf:[116,180],rk:[120,134],rf:[118,180],props:{chair:[50,125]},arrows:[[100,60,100,30]]},
+  warrior1:pose({p:[100,118],le:[95,30],lh:[92,8],re:[105,30],rh:[108,8],lk:[138,142],lf:[142,180],rk:[76,150],rf:[50,180]}),
+  bridge:{h:[28,166],n:[48,166],p:[108,132],le:[72,174],lh:[96,176],re:[74,174],rh:[98,176],lk:[142,120],lf:[152,178],rk:[144,120],rf:[154,178],props:{mat:1},arrows:[[108,160,108,138]]},
+  birddog:pose({h:QUAD.h,n:QUAD.n,p:QUAD.p,le:QUAD.le,lh:QUAD.lh,lk:QUAD.lk,lf:QUAD.lf,re:[40,104],rh:[12,100],rk:[165,108],rf:[192,104],props:{mat:1}}),
+  dorsi:{h:[68,86],n:[72,106],p:[70,162],le:[90,130],lh:[110,140],re:[92,130],rh:[112,140],lk:[112,164],lf:[155,166],rk:[114,164],rf:[157,166],toes:[[157,166,164,150]],props:{mat:1,band:[[162,152],[196,166]]},arrows:[[182,130,166,140]]},
+  evert:{h:[68,86],n:[72,106],p:[70,162],le:[62,135],lh:[52,162],re:[66,135],rh:[56,162],lk:[112,164],lf:[155,166],rk:[114,164],rf:[157,166],toes:[[157,166,168,154]],props:{mat:1,band:[[160,160],[130,190]]},arrows:[[160,135,185,135]]},
+  catcow:pose({h:QUAD.h,n:QUAD.n,p:QUAD.p,le:QUAD.le,lh:QUAD.lh,lk:QUAD.lk,lf:QUAD.lf,re:QUAD.re,rh:QUAD.rh,rk:QUAD.rk,rf:QUAD.rf,spine:[102,72],props:{mat:1},arrows:[[102,60,102,40],[102,40,102,60]]}),
+  hamstring:{h:[112,60],n:[100,78],p:[74,124],le:[118,100],lh:[134,124],re:[120,100],rh:[136,126],lk:[106,128],lf:[106,180],rk:[130,148],rf:[162,172],toes:[[162,172,168,158]],props:{chair:[40,125]},arrows:[[95,52,118,44]]},
+  twist:{h:[108,48],n:[100,68],p:[100,125],le:[80,92],lh:[66,120],re:[118,96],rh:[90,128],lk:[84,130],lf:[84,180],rk:[116,130],rf:[116,180],props:{chair:[60,125,1]},arrows:[[76,40,124,30]]},
+  calf:{h:[146,46],n:[136,64],p:[112,112],le:[152,80],lh:[170,74],re:[154,82],rh:[172,78],lk:[138,146],lf:[140,180],rk:[84,146],rf:[56,180],props:{wall:174},arrows:[[56,165,56,145]]},
+  legsup:{h:[34,166],n:[54,168],p:[140,170],le:[78,172],lh:[100,174],re:[80,172],rh:[102,174],lk:[143,122],lf:[146,64],rk:[145,122],rf:[148,64],props:{mat:1,wall:156}}
+};
+function figSVG(key){
+  var P=FIGS[key];if(!P)return "";
+  function L(a,b,c,col,w){return '<path d="M'+a+' L'+b+(c?' L'+c:'')+'" stroke="'+col+'" stroke-width="'+(w||9)+'" stroke-linecap="round" stroke-linejoin="round" fill="none"/>';}
+  var o='<svg viewBox="0 0 200 200" role="img" aria-label="'+key+' form">',pr=P.props||{},PC="#94a3b8",NEAR="#2563eb",FAR="#93c5fd";
+  o+='<line x1="4" y1="182" x2="196" y2="182" stroke="'+PC+'" stroke-width="3"/>';
+  if(pr.mat)o+='<rect x="10" y="180" width="180" height="5" rx="2" fill="#a78bfa"/>';
+  if(pr.wall)o+='<rect x="'+(pr.wall-4)+'" y="10" width="8" height="172" fill="'+PC+'"/>';
+  if(pr.counter)o+='<rect x="'+(pr.counter-46)+'" y="96" width="50" height="86" rx="3" fill="none" stroke="'+PC+'" stroke-width="4"/>';
+  if(pr.step)o+='<rect x="'+pr.step[0]+'" y="'+(182-pr.step[2])+'" width="'+pr.step[1]+'" height="'+pr.step[2]+'" rx="3" fill="'+PC+'"/>';
+  if(pr.chair){var c=pr.chair,bx=c[2]?c[0]+80:c[0];o+=L(c[0]+','+c[1],(c[0]+80)+','+c[1],null,PC,6)+L(bx+','+(c[1]-55),bx+','+182,null,PC,6)+L((c[2]?c[0]:c[0]+80)+','+c[1],(c[2]?c[0]:c[0]+80)+',182',null,PC,6);}
+  if(pr.band)o+='<path d="M'+pr.band[0]+' L'+pr.band[1]+'" stroke="#16a34a" stroke-width="4" stroke-dasharray="6 4"/>';
+  o+=L(P.n,P.le,P.lh,FAR)+L(P.p,P.lk,P.lf,FAR);
+  o+=P.spine?'<path d="M'+P.n+' Q'+P.spine+' '+P.p+'" stroke="'+NEAR+'" stroke-width="10" stroke-linecap="round" fill="none"/>':L(P.n,P.p,null,NEAR,10);
+  o+=L(P.p,P.rk,P.rf,NEAR)+L(P.n,P.re,P.rh,NEAR);
+  (P.toes||[]).forEach(function(t){o+=L(t[0]+','+t[1],t[2]+','+t[3],null,"#16a34a",7);});
+  o+='<circle cx="'+P.h[0]+'" cy="'+P.h[1]+'" r="13" fill="'+NEAR+'"/>';
+  (P.arrows||[]).forEach(function(a){o+='<g class="arw"><line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+a[2]+'" y2="'+a[3]+'" stroke="#f59e0b" stroke-width="4" marker-end="url(#ah)"/></g>';});
+  return o+'<defs><marker id="ah" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#f59e0b"/></marker></defs></svg>';
+}
+
+/* ------------------------------------------------------------------
+   GUIDED WORKOUT WIZARD
+------------------------------------------------------------------- */
+var W={list:null,i:0,set:0,left:0,tick:null};
+var NAMES={dayA:"Day A",dayB:"Day B",recovery:"Sunday Recovery"};
+function totalSets(ex){return ex.wz.sets*(ex.wz.sides?2:1);}
+function fmt(t){var m=Math.floor(t/60),s=t%60;return m+":"+(s<10?"0":"")+s;}
+function beep(){try{var a=new(window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.frequency.value=880;o.connect(g);g.connect(a.destination);g.gain.value=.3;o.start();o.stop(a.currentTime+.6);}catch(e){}try{navigator.vibrate&&navigator.vibrate([300,100,300]);}catch(e){}}
+function stopTimer(){clearInterval(W.tick);W.tick=null;}
+function startWiz(list){W.list=list;W.i=0;W.set=0;document.getElementById("wiz").classList.add("on");document.body.style.overflow="hidden";try{navigator.wakeLock&&navigator.wakeLock.request("screen").then(function(l){W.lock=l;}).catch(function(){});}catch(e){}showEx();}
+function closeWiz(){stopTimer();document.getElementById("wiz").classList.remove("on");document.body.style.overflow="";try{W.lock&&W.lock.release();}catch(e){}}
+function progress(){var ex=EXERCISES[W.list],n=ex.length,frac=W.i<n?W.set/totalSets(ex[W.i]):0;document.querySelector("#wbar i").style.width=Math.min(100,(W.i+frac)/n*100)+"%";}
+function showEx(){
+  stopTimer();var arr=EXERCISES[W.list];
+  if(W.i>=arr.length)return showDone();
+  var ex=arr[W.i],z=ex.wz,n=totalSets(ex);W.left=z.secs||0;
+  document.getElementById("wstep").textContent=NAMES[W.list]+" · Exercise "+(W.i+1)+" of "+arr.length;
+  var pills="";for(var k=0;k<n;k++){var lbl=z.sides?(k%2?"R":"L")+(Math.floor(k/2)+1):"Set "+(k+1);pills+='<span class="'+(k<W.set?"done":k==W.set?"cur":"")+'">'+(k<W.set?"✓ ":"")+lbl+'</span>';}
+  var dose=z.secs?(z.secs>=60?fmt(z.secs)+" hold":z.secs+" sec"):(typeof z.reps=="number"?z.reps+" reps":z.reps);
+  var setTxt=z.sets>1?(z.sets+(z.sets>1?" sets":" set")+(z.sides?" per side":"")):(z.sides?"each side":"");
+  var h='<div class="badge '+ex.pri+'">'+PRI[ex.pri].icon+' '+PRI[ex.pri].label+'</div><h2>'+esc(ex.title)+'</h2>'+
+    '<div class="fig">'+figSVG(ex.key)+'</div>'+
+    '<div class="dose" style="'+(typeof z.reps=="string"?"font-size:1.15rem":"")+'">'+esc(dose)+(setTxt?' <small style="font-size:1rem;color:var(--muted)">× '+setTxt+'</small>':'')+'</div>'+
+    '<div class="cue">'+esc(z.cue)+'</div><div class="sets">'+pills+'</div>';
+  if(z.secs)h+='<div class="clock" id="wclock">'+fmt(W.left)+'</div><div class="wbtns"><button class="go" id="wtimer">▶ Start Timer</button>'+(n>1?'<button id="wset">✓ Set Done</button>':'')+'</div>';
+  else if(n>1)h+='<div class="wbtns"><button class="go" id="wset">✓ Set Done</button></div>';
+  h+='<div class="wbtns"><button class="ok" id="wnext">✓ Log &amp; Next →</button></div>'+
+    '<div class="wnav"><button id="wprev"'+(W.i?'':' style="visibility:hidden"')+'>← Back</button><button id="wskip">Skip →</button></div>';
+  var b=document.getElementById("wbody");b.innerHTML=h;b.scrollTop=0;document.getElementById("wiz").scrollTop=0;progress();
+}
+function setDone(){var ex=EXERCISES[W.list][W.i];stopTimer();if(W.set<totalSets(ex))W.set++;if(W.set>=totalSets(ex)){logEx();return;}showEx();}
+function logEx(){
+  var ex=EXERCISES[W.list][W.i];localStorage_set(ex.key,"1");
+  var cb=document.querySelector('input[data-k="'+ex.key+'"]');if(cb)cb.checked=true;
+  try{var log=JSON.parse(localStorage.getItem("mob_log")||"[]");log.push({t:new Date().toISOString(),plan:W.list,key:ex.key,sets:W.set});localStorage.setItem("mob_log",JSON.stringify(log.slice(-1000)));}catch(e){}
+  W.i++;W.set=0;showEx();
+}
+function toggleTimer(){
+  var btn=document.getElementById("wtimer");
+  if(W.tick){stopTimer();btn.textContent="▶ Resume";return;}
+  if(W.left<=0)W.left=EXERCISES[W.list][W.i].wz.secs;
+  btn.textContent="❚❚ Pause";
+  W.tick=setInterval(function(){W.left--;var c=document.getElementById("wclock");if(c)c.textContent=fmt(Math.max(0,W.left));
+    if(W.left<=0){beep();setDone();}},1000);
+}
+function showDone(){
+  stopTimer();document.querySelector("#wbar i").style.width="100%";document.getElementById("wstep").textContent=NAMES[W.list]+" · Complete";
+  document.getElementById("wbody").innerHTML='<div style="font-size:5rem;margin-top:30px">🎉</div><h2>'+NAMES[W.list]+' complete!</h2><p class="cue">All exercises logged on this phone. Great work — rest, hydrate, and check in on how your feet feel.</p><div class="wbtns"><button class="ok" id="wclose2">Finish</button></div>';
+}
+document.addEventListener("click",function(e){
+  var t=e.target.closest&&e.target.closest("button");if(!t)return;
+  if(t.dataset.start)startWiz(t.dataset.start);
+  else if(t.id=="wclose"||t.id=="wclose2")closeWiz();
+  else if(t.id=="wtimer")toggleTimer();
+  else if(t.id=="wset")setDone();
+  else if(t.id=="wnext")logEx();
+  else if(t.id=="wskip"){W.i++;W.set=0;showEx();}
+  else if(t.id=="wprev"){W.i--;W.set=0;showEx();}
+});
 render();
 </script>
 </body>
