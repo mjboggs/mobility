@@ -29,35 +29,38 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
 .top{display:inline-block;margin-top:12px;color:var(--blue)}
 
 .start{display:flex;width:100%;justify-content:center;margin:4px 0 8px;font-size:1.05rem;cursor:pointer}
-#wiz{display:none;position:fixed;inset:0;z-index:100;background:var(--bg);flex-direction:column;overflow-y:auto}
+#wiz{display:none;position:fixed;inset:0;z-index:100;background:var(--bg);flex-direction:column;height:100vh;height:100dvh;overflow-y:auto}
 #wiz.on{display:flex}
 #wbar{position:sticky;top:0;height:10px;background:var(--line);flex:none;z-index:2}
 #wbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .35s}
-.whead{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;padding-top:max(10px,env(safe-area-inset-top));color:var(--muted);font-size:.9rem}
+.whead{display:flex;align-items:center;gap:4px;padding:4px 8px;padding-top:max(4px,env(safe-area-inset-top));color:var(--muted);font-size:.85rem;flex:none}
+#wstep{flex:1;text-align:center}
+.whead .wn{color:var(--blue);font-size:.95rem;font-weight:600;padding:10px 6px}
 .whead button{background:none;border:0;color:var(--muted);font-size:1.5rem;padding:4px 8px;cursor:pointer}
-.wbody{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 16px 16px;max-width:640px;width:100%;margin:0 auto;text-align:center}
-.wbody h2{margin:0 0 4px;font-size:1.6rem}
-.fig{width:min(100%,42vh);aspect-ratio:1;background:var(--card);border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,.1);margin:8px 0}
+.wbody{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;padding:0 16px max(12px,env(safe-area-inset-bottom));max-width:640px;width:100%;margin:0 auto;text-align:center}
+.wbody h2{margin:0;font-size:1.35rem;line-height:1.2}
+.wtitle{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;flex:none}
+.wtitle .badge{margin:0}
+.wbody>*{flex:none}
+.wbody>.fig{flex:1 1 0;min-height:90px;width:100%;max-width:480px;background:var(--card);border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,.1);margin:6px 0;overflow:hidden}
 .fig svg{width:100%;height:100%;display:block}
 .fig .arw{animation:pulse 1.4s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.25}}
-.cue{color:var(--muted);margin:4px 0 10px;font-size:.98rem}
-.dose{font-size:2rem;font-weight:800;margin:4px 0}
-.sets{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0 12px}
-.sets span{min-width:44px;padding:6px 10px;border-radius:999px;border:2px solid var(--line);font-weight:700;font-size:.85rem}
+.cue{color:var(--muted);margin:2px 0 6px;font-size:.9rem;line-height:1.35}
+.dose{font-size:1.7rem;font-weight:800;margin:0;line-height:1.2}
+.sets{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:0 0 4px}
+.sets span{min-width:40px;padding:3px 10px;border-radius:999px;border:2px solid var(--line);font-weight:700;font-size:.85rem}
 .sets span.done{background:#16a34a;border-color:#16a34a;color:#fff}
 .sets span.cur{border-color:var(--blue)}
-.clock{font-size:3rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
-.wbtns{display:flex;gap:10px;width:100%;margin-top:12px}
-.wbtns button{flex:1;min-height:56px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--text);font-size:1.1rem;font-weight:700;cursor:pointer}
+.clock{font-size:2.4rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1;align-self:center;min-width:4.2ch}
+.wbtns{display:flex;gap:10px;width:100%;margin-top:8px}
+.wbtns button{flex:1;min-height:52px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--text);font-size:1.1rem;font-weight:700;cursor:pointer}
 .wbtns button.go{background:var(--blue);border-color:var(--blue);color:#fff}
 .wbtns button.ok{background:#16a34a;border-color:#16a34a;color:#fff}
-.wnav{display:flex;justify-content:space-between;width:100%;margin-top:10px}
-.wnav button{background:none;border:0;color:var(--blue);font-size:1rem;padding:10px;cursor:pointer}
-.fig.vid{width:100%;max-width:640px;aspect-ratio:16/9;background:#000;overflow:hidden}
+.wbody>.fig.vid{max-width:640px;background:#000}
 .fig.vid iframe{width:100%;height:100%;border:0;display:block}
-.vlinks{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:2px 0 6px}
-.vlinks button,.vlinks a{font-size:.95rem;color:var(--blue);background:var(--card);text-decoration:none;border:1px solid var(--line);padding:8px 14px;border-radius:999px;min-height:40px;display:inline-flex;align-items:center;cursor:pointer;font-weight:600}
+.vlinks{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 6px}
+.vlinks button,.vlinks a{font-size:.85rem;color:var(--blue);background:var(--card);text-decoration:none;border:1px solid var(--line);padding:4px 12px;border-radius:999px;min-height:34px;display:inline-flex;align-items:center;cursor:pointer;font-weight:600}
 #progress{--h0:var(--line);--h1:#bfdbfe;--h2:#60a5fa;--h3:#2563eb;--h4:#1e3a8a}
 @media (prefers-color-scheme:dark){#progress{--h1:#1e3a8a;--h2:#1d4ed8;--h3:#3b82f6;--h4:#93c5fd}}
 .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
@@ -81,6 +84,12 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
 .hist li{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:.92rem}
 .hist li span{color:var(--muted)}
 .empty{color:var(--muted)}
+@media (max-height:600px){.cue{font-size:.8rem;margin:0 0 4px}.dose{font-size:1.35rem}.wbtns{margin-top:6px}.wbtns button{min-height:44px;font-size:1rem}.clock{font-size:1.9rem}.wbody h2{font-size:1.15rem}.vlinks{margin-bottom:4px}.vlinks button,.vlinks a{min-height:30px}}
+@media (orientation:landscape) and (max-height:600px){
+ .wbody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-auto-rows:min-content;column-gap:16px;align-content:center;max-width:none}
+ .wbody>*{grid-column:2}
+ .wbody>.fig{grid-column:1;grid-row:1/span 9;height:calc(100dvh - 70px);min-height:0;margin:0}
+}
 </style>
 </head>
 <body>
@@ -148,7 +157,7 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
 </div>
 
 <div id="wiz" role="dialog" aria-modal="true"><div id="wbar"><i></i></div>
-  <div class="whead"><span id="wstep"></span><button id="wclose" aria-label="Exit workout">&times;</button></div>
+  <div class="whead"><button class="wn" id="wprev">&larr; Back</button><span id="wstep"></span><button class="wn" id="wskip">Skip &rarr;</button><button id="wclose" aria-label="Exit workout">&times;</button></div>
   <div class="wbody" id="wbody"></div>
 </div>
 
@@ -277,19 +286,19 @@ function showEx(){
   stopTimer();var arr=EXERCISES[W.list];
   if(W.i>=arr.length)return showDone();
   var ex=arr[W.i],z=ex.wz,n=totalSets(ex);W.left=z.secs||0;
-  document.getElementById("wstep").textContent=NAMES[W.list]+" · Exercise "+(W.i+1)+" of "+arr.length;
+  document.getElementById("wstep").textContent=NAMES[W.list]+" · "+(W.i+1)+" of "+arr.length;
   var pills="";for(var k=0;k<n;k++){var lbl=z.sides?(k%2?"R":"L")+(Math.floor(k/2)+1):"Set "+(k+1);pills+='<span class="'+(k<W.set?"done":k==W.set?"cur":"")+'">'+(k<W.set?"✓ ":"")+lbl+'</span>';}
   var dose=z.secs?(z.secs>=60?fmt(z.secs)+" hold":z.secs+" sec"):(typeof z.reps=="number"?z.reps+" reps":z.reps);
   var setTxt=z.sets>1?(z.sets+(z.sets>1?" sets":" set")+(z.sides?" per side":"")):(z.sides?"each side":"");
-  var h='<div class="badge '+ex.pri+'">'+PRI[ex.pri].icon+' '+PRI[ex.pri].label+'</div><h2>'+esc(ex.title)+'</h2>'+
+  var h='<div class="wtitle"><h2>'+esc(ex.title)+'</h2><span class="badge '+ex.pri+'">'+PRI[ex.pri].icon+' '+PRI[ex.pri].label.replace(" Priority","")+'</span></div>'+
     '<div class="fig" id="wfig">'+figSVG(ex.key)+'</div>'+
     '<div class="vlinks">'+(ex.id?'<button id="wvid">\u25b6 Watch Video</button><a href="https://www.youtube.com/watch?v='+ex.id+'" target="_blank" rel="noopener">Open in YouTube \u2197</a>':'<a href="https://www.youtube.com/results?search_query='+encodeURIComponent(ex.q)+'" target="_blank" rel="noopener">\u25b6 Find a Video \u2197</a>')+'</div>'+
     '<div class="dose" style="'+(typeof z.reps=="string"?"font-size:1.15rem":"")+'">'+esc(dose)+(setTxt?' <small style="font-size:1rem;color:var(--muted)">× '+setTxt+'</small>':'')+'</div>'+
     '<div class="cue">'+esc(z.cue)+'</div><div class="sets">'+pills+'</div>';
-  if(z.secs)h+='<div class="clock" id="wclock">'+fmt(W.left)+'</div><div class="wbtns"><button class="go" id="wtimer">▶ Start Timer</button>'+(n>1?'<button id="wset">✓ Set Done</button>':'')+'</div>';
+  if(z.secs)h+='<div class="wbtns"><div class="clock" id="wclock">'+fmt(W.left)+'</div><button class="go" id="wtimer">▶ Start</button>'+(n>1?'<button id="wset">✓ Set Done</button>':'')+'</div>';
   else if(n>1)h+='<div class="wbtns"><button class="go" id="wset">✓ Set Done</button></div>';
-  h+='<div class="wbtns"><button class="ok" id="wnext">✓ Log &amp; Next →</button></div>'+
-    '<div class="wnav"><button id="wprev"'+(W.i?'':' style="visibility:hidden"')+'>← Back</button><button id="wskip">Skip →</button></div>';
+  h+='<div class="wbtns"><button class="ok" id="wnext">✓ Log &amp; Next →</button></div>';
+  document.getElementById("wprev").style.visibility=W.i?"":"hidden";document.getElementById("wskip").style.visibility="";
   var b=document.getElementById("wbody");b.innerHTML=h;b.scrollTop=0;document.getElementById("wiz").scrollTop=0;progress();
 }
 function setDone(){var ex=EXERCISES[W.list][W.i];stopTimer();if(W.set<totalSets(ex))W.set++;if(W.set>=totalSets(ex)){logEx();return;}showEx();}
@@ -308,7 +317,7 @@ function toggleTimer(){
     if(W.left<=0){beep();setDone();}},1000);
 }
 function showDone(){
-  stopTimer();document.querySelector("#wbar i").style.width="100%";document.getElementById("wstep").textContent=NAMES[W.list]+" · Complete";
+  stopTimer();document.querySelector("#wbar i").style.width="100%";document.getElementById("wstep").textContent=NAMES[W.list]+" · Complete";document.getElementById("wprev").style.visibility=document.getElementById("wskip").style.visibility="hidden";
   document.getElementById("wbody").innerHTML='<div style="font-size:5rem;margin-top:30px">🎉</div><h2>'+NAMES[W.list]+' complete!</h2><p class="cue">All exercises logged on this phone. Great work — rest, hydrate, and check in on how your feet feel.</p><div class="wbtns"><button class="ok" id="wclose2">Finish</button></div>';
 }
 function toggleVideo(btn){
