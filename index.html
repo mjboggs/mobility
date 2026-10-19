@@ -97,6 +97,8 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
 body[data-p="ald"] [data-prog="edema"],body[data-p="edema"] [data-prog="ald"]{display:none!important}
 body[data-p="edema"]{--blue:#0d9488;--cyan:#38bdf8}
 .urgent{border-left:5px solid #dc2626;padding-left:10px;margin-top:10px}
+#wiz.flash{animation:wflash 1.2s ease-out}
+@keyframes wflash{0%,30%{background:#16a34a}100%{background:var(--bg)}}
 </style>
 </head>
 <body data-p="ald">
@@ -370,7 +372,33 @@ var W={list:null,i:0,set:0,left:0,tick:null};
 var NAMES={dayA:"Day A",dayB:"Day B",recovery:"Sunday Recovery",edAM:"Morning Circulation",edPM:"Evening Drain",edDesk:"Sitting Break"};
 function totalSets(ex){return ex.wz.sets*(ex.wz.sides?2:1);}
 function fmt(t){var m=Math.floor(t/60),s=t%60;return m+":"+(s<10?"0":"")+s;}
-function beep(){try{var a=new(window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.frequency.value=880;o.connect(g);g.connect(a.destination);g.gain.value=.3;o.start();o.stop(a.currentTime+.6);}catch(e){}try{navigator.vibrate&&navigator.vibrate([300,100,300]);}catch(e){}}
+/* Timer alert. iPhones only allow sound from an audio context that was
+   started by a tap, so unlockAudio() runs on the Start tap and the context
+   is reused. The ring/silent switch mutes the sound; haptics still fire.
+   iPhone Safari has no navigator.vibrate, so haptic ticks come from toggling
+   a hidden iOS switch control (iOS 18+); Android uses navigator.vibrate. */
+var AC=null;
+function unlockAudio(){
+  try{
+    if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state!="running")AC.resume();
+    var b=AC.createBuffer(1,1,22050),src=AC.createBufferSource();src.buffer=b;src.connect(AC.destination);src.start(0);
+  }catch(e){}
+}
+function tone(t,f,d){var o=AC.createOscillator(),g=AC.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.6,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.05);}
+function hapticTick(){
+  try{
+    var l=document.createElement("label"),i=document.createElement("input");
+    l.setAttribute("aria-hidden","true");l.style.display="none";i.type="checkbox";i.setAttribute("switch","");
+    l.appendChild(i);document.head.appendChild(l);l.click();document.head.removeChild(l);
+  }catch(e){}
+}
+function beep(){
+  try{if(AC){if(AC.state!="running")AC.resume();var t=AC.currentTime+.05;tone(t,880,.25);tone(t+.35,880,.25);tone(t+.7,1320,.6);}}catch(e){}
+  if(navigator.vibrate){try{navigator.vibrate([400,150,400,150,700]);}catch(e){}}
+  else{[0,90,180,450,540,630,900,990,1080,1170].forEach(function(ms){setTimeout(hapticTick,ms);});}
+  var z=document.getElementById("wiz");z.classList.remove("flash");void z.offsetWidth;z.classList.add("flash");
+}
 function stopTimer(){clearInterval(W.tick);W.tick=null;}
 function startWiz(list){W.list=list;W.i=0;W.set=0;document.getElementById("wiz").classList.add("on");document.body.style.overflow="hidden";try{navigator.wakeLock&&navigator.wakeLock.request("screen").then(function(l){W.lock=l;}).catch(function(){});}catch(e){}showEx();}
 function closeWiz(){stopTimer();renderProgress();document.getElementById("wiz").classList.remove("on");document.body.style.overflow="";try{W.lock&&W.lock.release();}catch(e){}}
@@ -405,9 +433,10 @@ function toggleTimer(){
   var btn=document.getElementById("wtimer");
   if(W.tick){stopTimer();btn.textContent="▶ Resume";return;}
   if(W.left<=0)W.left=EXERCISES[W.list][W.i].wz.secs;
-  btn.textContent="❚❚ Pause";
-  W.tick=setInterval(function(){W.left--;var c=document.getElementById("wclock");if(c)c.textContent=fmt(Math.max(0,W.left));
-    if(W.left<=0){beep();setDone();}},1000);
+  btn.textContent="❚❚ Pause";unlockAudio();
+  var end=Date.now()+W.left*1000;
+  W.tick=setInterval(function(){W.left=Math.max(0,Math.ceil((end-Date.now())/1000));var c=document.getElementById("wclock");if(c)c.textContent=fmt(W.left);
+    if(W.left<=0){beep();setDone();}},250);
 }
 function showDone(){
   stopTimer();document.querySelector("#wbar i").style.width="100%";document.getElementById("wstep").textContent=NAMES[W.list]+" · Complete";document.getElementById("wprev").style.visibility=document.getElementById("wskip").style.visibility="hidden";
