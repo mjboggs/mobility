@@ -90,23 +90,41 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
  .wbody>*{grid-column:2}
  .wbody>.fig{grid-column:1;grid-row:1/span 9;height:calc(100dvh - 70px);min-height:0;margin:0}
 }
+.prog{display:inline-flex;margin-top:12px;background:rgba(255,255,255,.18);border-radius:999px;padding:3px;gap:2px}
+.prog button{border:0;background:none;color:#fff;font-weight:700;font-size:.9rem;padding:8px 14px;border-radius:999px;cursor:pointer;min-height:38px}
+.prog button.on{background:#fff;color:var(--blue)}
+.prog-l{display:block;font-size:.75rem;opacity:.85;margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+body[data-p="ald"] [data-prog="edema"],body[data-p="edema"] [data-prog="ald"]{display:none!important}
+body[data-p="edema"]{--blue:#0d9488;--cyan:#38bdf8}
+.urgent{border-left:5px solid #dc2626;padding-left:10px;margin-top:10px}
 </style>
 </head>
-<body>
+<body data-p="ald">
 <header id="top">
-  <h1>ALD Mobility Companion</h1>
-  <p>Designed for Balance, Foot Drop, Strength, and Recovery</p>
+  <h1 data-prog="ald">ALD Mobility Companion</h1>
+  <p data-prog="ald">Designed for Balance, Foot Drop, Strength, and Recovery</p>
+  <h1 data-prog="edema">Edema Relief Companion</h1>
+  <p data-prog="edema">Circulation, Foot &amp; Toe Swelling, and Elevation &middot; May-Thurner (post-stent)</p>
+  <span class="prog-l">Program</span>
+  <div class="prog" role="group" aria-label="Choose program"><button data-prog-set="ald">ALD Mobility</button><button data-prog-set="edema">Edema Relief</button></div>
 </header>
 
-<nav>
+<nav data-prog="ald">
   <a href="#daya">Day A</a>
   <a href="#dayb">Day B</a>
   <a href="#recovery">Sunday</a>
   <a href="#booster">Foot Booster</a>
   <a href="#progress">Progress</a>
 </nav>
+<nav data-prog="edema">
+  <a href="#edam">Morning</a>
+  <a href="#edpm">Evening</a>
+  <a href="#eddesk">Sitting Breaks</a>
+  <a href="#edhabits">Daily Habits</a>
+  <a href="#progress">Progress</a>
+</nav>
 
-<div class="card safety">
+<div class="card safety" data-prog="ald">
   <h2>ALD Safety Reminders</h2>
   <ul>
     <li>✅ Use a wall, counter, chair, or cane for support.</li>
@@ -118,11 +136,29 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
   </ul>
   <p style="margin-bottom:0;color:var(--muted)">Tap the box next to an exercise when you finish it (saved on this phone).</p>
 </div>
-<div class="legend"><span class="badge bal">🟦 Balance</span><span class="badge fd">🟩 Foot Drop</span><span class="badge st">🟪 Strength</span><span class="badge rc">🟨 Recovery</span></div>
+<div class="legend" data-prog="ald"><span class="badge bal">🟦 Balance</span><span class="badge fd">🟩 Foot Drop</span><span class="badge st">🟪 Strength</span><span class="badge rc">🟨 Recovery</span></div>
 
-<div id="daya" class="card"><h2>Day A: Balance &amp; Walking</h2><button class="btn primary start" data-start="dayA">&#9654; Start Guided Workout</button><div data-list="dayA"></div><a class="top" href="#top">Back to Top</a></div>
-<div id="dayb" class="card"><h2>Day B: Strength &amp; Stability</h2><button class="btn primary start" data-start="dayB">&#9654; Start Guided Workout</button><div data-list="dayB"></div><a class="top" href="#top">Back to Top</a></div>
-<div id="recovery" class="card"><h2>Sunday Recovery</h2><button class="btn primary start" data-start="recovery">&#9654; Start Guided Workout</button><div data-list="recovery"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="daya" class="card" data-prog="ald"><h2>Day A: Balance &amp; Walking</h2><button class="btn primary start" data-start="dayA">&#9654; Start Guided Workout</button><div data-list="dayA"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="dayb" class="card" data-prog="ald"><h2>Day B: Strength &amp; Stability</h2><button class="btn primary start" data-start="dayB">&#9654; Start Guided Workout</button><div data-list="dayB"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="recovery" class="card" data-prog="ald"><h2>Sunday Recovery</h2><button class="btn primary start" data-start="recovery">&#9654; Start Guided Workout</button><div data-list="recovery"></div><a class="top" href="#top">Back to Top</a></div>
+
+<div class="card safety" data-prog="edema">
+  <h2>Edema Safety Reminders</h2>
+  <ul>
+    <li>✅ Review this routine with your vascular doctor, and follow their instructions on compression and blood thinners.</li>
+    <li>✅ Wear your compression stockings as prescribed. Put them on in the morning before swelling builds.</li>
+    <li>✅ Moves should feel easy and pain-free. Stop if anything hurts.</li>
+    <li>✅ Skip deep leg massage unless your doctor says it's OK (stents and clot history).</li>
+    <li>✅ Use a chair or counter for support when standing.</li>
+  </ul>
+  <div class="urgent"><strong>🚨 Call your doctor right away or go to the ER</strong> for sudden new or worse swelling in one leg, calf pain or tenderness, warmth or redness, or skin that splits or weeps.<br><strong>Call 911</strong> for chest pain or sudden shortness of breath.</div>
+  <p style="margin-bottom:0;color:var(--muted)">Tap the box next to an exercise when you finish it (saved on this phone).</p>
+</div>
+<div class="legend" data-prog="edema"><span class="badge bal">🟦 Calf Pump</span><span class="badge fd">🟩 Foot &amp; Toes</span><span class="badge st">🟪 Circulation</span><span class="badge rc">🟨 Elevation</span></div>
+
+<div id="edam" class="card" data-prog="edema"><h2>Morning Circulation</h2><p style="color:var(--muted);margin-top:0">About 20 minutes. Do it after your stockings are on.</p><button class="btn primary start" data-start="edAM">&#9654; Start Guided Workout</button><div data-list="edAM"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="edpm" class="card" data-prog="edema"><h2>Evening Drain</h2><p style="color:var(--muted);margin-top:0">About 25 minutes, lying down with your feet up. It ends with elevation.</p><button class="btn primary start" data-start="edPM">&#9654; Start Guided Workout</button><div data-list="edPM"></div><a class="top" href="#top">Back to Top</a></div>
+<div id="eddesk" class="card" data-prog="edema"><h2>Sitting Breaks</h2><p style="color:var(--muted);margin-top:0">About 5 minutes. Do it every 30&ndash;60 minutes when you're sitting or standing for a long time.</p><button class="btn primary start" data-start="edDesk">&#9654; Start Guided Workout</button><div data-list="edDesk"></div><a class="top" href="#top">Back to Top</a></div>
 
 <div id="progress" class="card pg">
   <h2>Progress</h2>
@@ -143,7 +179,7 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
   <a class="top" href="#top">Back to Top</a>
 </div>
 
-<div id="booster" class="card">
+<div id="booster" class="card" data-prog="ald">
   <h2>Daily Foot Booster (5 Minutes)</h2>
   <div class="boost"><ul>
     <li>🟩 Toe Raises × 20</li>
@@ -153,6 +189,20 @@ nav a{background:var(--blue);color:#fff;text-decoration:none;text-align:center;p
   </ul></div>
   <h3>Highest Priority Videos</h3>
   <ol class="priority" id="priorityList"></ol>
+  <a class="top" href="#top">Back to Top</a>
+</div>
+
+<div id="edhabits" class="card" data-prog="edema">
+  <h2>Daily Swelling Habits</h2>
+  <div class="boost"><ul>
+    <li>🧦 Compression stockings on first thing in the morning</li>
+    <li>🛋️ Feet above heart level for 15&ndash;20 min, 3&ndash;4 times a day</li>
+    <li>⏱️ Move every 30&ndash;60 min (do a Sitting Break)</li>
+    <li>🚶 Walk every day. Build up to 20&ndash;30 min.</li>
+    <li>🧂 Go easy on salt. Drink water as your doctor advises.</li>
+    <li>🚫 Don't cross your legs. Avoid tight sock tops.</li>
+    <li>👣 Check feet and toes daily for skin breaks. Moisturize, but not between toes.</li>
+  </ul></div>
   <a class="top" href="#top">Back to Top</a>
 </div>
 
@@ -191,8 +241,35 @@ var EXERCISES = {
     {key:"calf",title:"Standing Calf Stretch",id:"mafo7o7OnFo",q:"standing calf stretch at wall",pri:"rc",wz:{sets:1,secs:30,sides:1,cue:"Hands on wall, back leg straight with heel down, front knee bent. Lean in gently."},rx:["Hold 30 seconds each side"]},
     {key:"legsup",title:"Legs Up the Wall",id:"2G7p_fraD-k",q:"legs up the wall pose",pri:"rc",wz:{sets:1,secs:300,cue:"Hips close to the wall, legs resting up the wall, arms relaxed. Breathe slowly."},rx:["Hold 5 minutes"]}
   ]
+  ,
+  edAM: [
+    {key:"e_breath",fig:"breath",title:"Belly Breathing",id:"",q:"diaphragmatic breathing lying down lymphatic",pri:"circ",wz:{label:"1:30 breathing",sets:1,secs:90,cue:"Lie back, hand on belly. Breathe in slowly through your nose so your belly rises, then out through pursed lips. Deep breaths help move fluid back toward your heart."},rx:["90 seconds","Slow nose in, mouth out"]},
+    {key:"e_pump",fig:"pumpElev",title:"Ankle Pumps (Feet Up)",id:"pGGqm08pVuU",q:"ankle pumps exercise swelling",pri:"pump",wz:{sets:2,reps:30,cue:"Feet up on a pillow. Pull your toes toward you hard, then point them away. Slow and full range. This is your main calf pump."},rx:["2 sets of 30","Feet on a pillow"]},
+    {key:"e_circle",fig:"circle",title:"Ankle Circles",id:"",q:"ankle circles exercise seated",pri:"pump",wz:{sets:1,reps:"10 each direction",sides:1,cue:"Draw big slow circles with your foot. Move from the ankle, not the knee."},rx:["10 circles each direction","Each foot"]},
+    {key:"e_toes",fig:"toes",title:"Toe Curls & Spreads",id:"",q:"toe curls toe spread exercise",pri:"feet",wz:{sets:2,reps:15,cue:"Curl your toes down tight and hold 2 seconds, then spread them wide. This works the muscles on top of the foot where fluid pools."},rx:["2 sets of 15","Hold each curl 2 seconds"]},
+    {key:"e_heel",fig:"heelraise",title:"Heel Raises at Counter",id:"",q:"heel raises holding counter seniors",pri:"pump",wz:{sets:2,reps:15,cue:"Hold the counter. Rise slowly onto the balls of your feet, pause, then lower slowly. This is the strongest calf pump."},rx:["2 sets of 15","Slow up, slow down"]},
+    {key:"e_walk",fig:"walk",title:"Easy Walk",id:"",q:"walking for leg circulation venous",pri:"circ",wz:{label:"10 min walk",sets:1,secs:600,cue:"Walk at a comfortable pace with your stockings on. Heel-to-toe steps squeeze the veins in your feet and calves."},rx:["10 minutes","Comfortable pace"]}
+  ],
+  edPM: [
+    {key:"e_quad",fig:"quadset",title:"Quad Sets",id:"",q:"quad sets exercise",pri:"circ",wz:{sets:1,reps:10,sides:1,cue:"Sit or lie with legs straight. Tighten your thigh to press the back of your knee down. Hold 5 seconds, then relax."},rx:["10 each leg","Hold 5 seconds"]},
+    {key:"e_glute",fig:"glute",title:"Glute Squeezes",id:"",q:"glute squeeze lying down exercise",pri:"circ",wz:{sets:1,reps:10,cue:"Lie on your back, knees bent. Squeeze your buttocks together, hold 5 seconds, then relax."},rx:["10 squeezes","Hold 5 seconds"]},
+    {key:"e_alpha",fig:"alpha",title:"Ankle Alphabet",id:"",q:"ankle alphabet exercise",pri:"feet",wz:{sets:1,reps:"Trace A to Z",sides:1,cue:"Feet up. Trace each letter of the alphabet in the air with your big toe. Big, slow letters."},rx:["A to Z","Each foot"]},
+    {key:"e_pumpE",fig:"pumpElev",title:"Elevated Ankle Pumps",id:"pGGqm08pVuU",q:"ankle pumps exercise swelling",pri:"pump",wz:{sets:1,reps:30,cue:"Feet up above your heart. Toes toward you, then away. Keep a steady rhythm."},rx:["30 pumps","Feet above heart"]},
+    {key:"e_elev",fig:"elev",title:"Feet-Up Elevation",id:"2G7p_fraD-k",q:"leg elevation for swelling",pri:"elev",wz:{label:"15 min feet up",sets:1,secs:900,cue:"Lie back with your feet above heart level on pillows or up the wall. Keep your knees soft. Breathe slowly and relax."},rx:["15 minutes","Feet above heart level"]},
+    {key:"e_breath2",fig:"breath",title:"Belly Breathing",id:"",q:"diaphragmatic breathing lying down lymphatic",pri:"circ",wz:{label:"2 min breathing",sets:1,secs:120,cue:"Stay with your feet up. Breathe slowly into your belly, in through your nose, out through pursed lips."},rx:["2 minutes"]}
+  ],
+  edDesk: [
+    {key:"e_spump",fig:"seatpump",title:"Seated Ankle Pumps",id:"pGGqm08pVuU",q:"seated ankle pumps",pri:"pump",wz:{sets:1,reps:20,cue:"Sit tall. Heels on the floor, lift your toes high, then press your toes down and lift your heels."},rx:["20 pumps"]},
+    {key:"e_march",fig:"march",title:"Seated Marching",id:"",q:"seated marching exercise",pri:"circ",wz:{label:"1 min marching",sets:1,secs:60,cue:"Sit tall and lift one knee, then the other, like marching. Hold the chair if needed."},rx:["60 seconds"]},
+    {key:"e_toes2",fig:"toes",title:"Toe Spreads",id:"",q:"toe spread exercise",pri:"feet",wz:{sets:1,reps:10,cue:"Spread your toes as wide as you can, hold 3 seconds, then relax. Lift and lower your big toe on its own."},rx:["10 spreads","Hold 3 seconds"]},
+    {key:"e_stand",fig:"walk",title:"Stand & Walk",id:"",q:"walking break sitting",pri:"circ",wz:{label:"2 min walk",sets:1,secs:120,cue:"Stand up and walk around for 2 minutes. Try not to sit for more than 30 to 60 minutes at a time."},rx:["2 minutes"]}
+  ]
 };
-var PRI={bal:{label:"Balance Priority",icon:"🟦"},fd:{label:"Foot Drop Priority",icon:"🟩"},st:{label:"Strength Priority",icon:"🟪"},rc:{label:"Recovery Priority",icon:"🟨"}};
+var PRI={bal:{label:"Balance Priority",icon:"🟦"},fd:{label:"Foot Drop Priority",icon:"🟩"},st:{label:"Strength Priority",icon:"🟪"},rc:{label:"Recovery Priority",icon:"🟨"},
+  pump:{label:"Calf Pump",icon:"🟦",cls:"bal"},feet:{label:"Foot & Toes",icon:"🟩",cls:"fd"},circ:{label:"Circulation",icon:"🟪",cls:"st"},elev:{label:"Elevation",icon:"🟨",cls:"rc"}};
+var PROGRAMS={ald:["dayA","dayB","recovery"],edema:["edAM","edPM","edDesk"]};
+function curProg(){var p=localStorage_get("program");return PROGRAMS[p]?p:"ald";}
+function setProg(p){localStorage_set("program",p);document.body.setAttribute("data-p",p);[].forEach.call(document.querySelectorAll("[data-prog-set]"),function(b){b.classList.toggle("on",b.dataset.progSet==p);});document.querySelector('meta[name="theme-color"]').content=p=="edema"?"#0d9488":"#2563eb";if(typeof renderProgress=="function")renderProgress();}
 var PRIORITY = ["dorsi","footdrop","heelwalk","tree","birddog","bridge"];
 
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]});}
@@ -208,7 +285,7 @@ function render(){
         btns='<a class="btn primary" href="https://www.youtube.com/watch?v='+ex.id+'" target="_blank" rel="noopener">&#9654; Open in YouTube</a><a class="btn" href="'+search+'" target="_blank" rel="noopener">Find another</a>';
       }
       var done=localStorage_get(ex.key)?' checked':'';
-      return '<div class="exercise" id="ex-'+ex.key+'"><label class="row"><input type="checkbox" data-k="'+ex.key+'"'+done+'><h3>'+esc(ex.title)+'</h3></label><div class="badge '+ex.pri+'">'+PRI[ex.pri].icon+' '+PRI[ex.pri].label+'</div><div class="rx"><strong>Prescription</strong><ul>'+ex.rx.map(function(r){return '<li>'+esc(r)+'</li>';}).join('')+'</ul></div>'+video+'<div class="links">'+btns+'</div></div>';
+      return '<div class="exercise" id="ex-'+ex.key+'"><label class="row"><input type="checkbox" data-k="'+ex.key+'"'+done+'><h3>'+esc(ex.title)+'</h3></label><div class="badge '+(PRI[ex.pri].cls||ex.pri)+'">'+PRI[ex.pri].icon+' '+PRI[ex.pri].label+'</div><div class="rx"><strong>Prescription</strong><ul>'+ex.rx.map(function(r){return '<li>'+esc(r)+'</li>';}).join('')+'</ul></div>'+video+'<div class="links">'+btns+'</div></div>';
     }).join("");
   });
   var byKey={};
@@ -249,6 +326,19 @@ var FIGS={
   twist:{h:[108,48],n:[100,68],p:[100,125],le:[80,92],lh:[66,120],re:[118,96],rh:[90,128],lk:[84,130],lf:[84,180],rk:[116,130],rf:[116,180],props:{chair:[60,125,1]},arrows:[[76,40,124,30]]},
   calf:{h:[146,46],n:[136,64],p:[112,112],le:[152,80],lh:[170,74],re:[154,82],rh:[172,78],lk:[138,146],lf:[140,180],rk:[84,146],rf:[56,180],props:{wall:174},arrows:[[56,165,56,145]]},
   legsup:{h:[34,166],n:[54,168],p:[140,170],le:[78,172],lh:[100,174],re:[80,172],rh:[102,174],lk:[143,122],lf:[146,64],rk:[145,122],rf:[148,64],props:{mat:1,wall:156}}
+  ,
+  breath:{h:[28,160],n:[48,166],p:[110,170],le:[72,150],lh:[92,156],re:[74,152],rh:[96,158],lk:[140,132],lf:[160,178],rk:[142,132],rf:[162,178],props:{mat:1},arrows:[[94,148,94,124]]},
+  pumpElev:{h:[22,166],n:[42,170],p:[100,172],le:[62,176],lh:[82,177],re:[64,176],rh:[84,177],lk:[132,152],lf:[168,146],rk:[134,152],rf:[170,146],toes:[[170,146,176,128]],props:{mat:1,pillow:[118,152,66,28]},arrows:[[190,118,184,146],[184,146,190,118]]},
+  circle:{h:[68,86],n:[72,106],p:[70,162],le:[62,135],lh:[52,162],re:[66,135],rh:[56,162],lk:[112,164],lf:[155,166],rk:[114,164],rf:[157,166],toes:[[157,166,166,150]],props:{mat:1,circle:[164,150,22]}},
+  toes:{h:[86,48],n:[86,68],p:[84,122],le:[96,95],lh:[108,120],re:[98,95],rh:[110,122],lk:[128,124],lf:[130,178],rk:[130,124],rf:[132,178],toes:[[132,178,152,178]],props:{chair:[46,125]},arrows:[[168,156,156,172],[150,150,170,150]]},
+  heelraise:pose({le:[80,85],lh:[60,100],lk:[96,140],lf:[96,166],rk:[104,140],rf:[106,166],p:[100,104],n:[100,54],h:[100,34],toes:[[96,166,108,180],[106,166,118,180]],props:{counter:58},arrows:[[140,160,140,128]]}),
+  walk:pose({h:[100,38],n:[100,58],p:[100,108],le:[88,82],lh:[80,104],re:[112,82],rh:[120,104],lk:[86,142],lf:[74,178],rk:[116,142],rf:[128,178],toes:[[128,178,140,172]],arrows:[[130,30,172,30]]}),
+  quadset:{h:[68,86],n:[72,106],p:[70,162],le:[62,135],lh:[52,162],re:[66,135],rh:[56,162],lk:[112,164],lf:[155,166],rk:[114,164],rf:[157,166],toes:[[157,166,164,150]],props:{mat:1},arrows:[[114,128,114,156]]},
+  glute:{h:[28,160],n:[48,166],p:[110,170],le:[72,172],lh:[94,176],re:[74,172],rh:[96,176],lk:[140,132],lf:[160,178],rk:[142,132],rf:[162,178],props:{mat:1},arrows:[[90,148,106,160],[130,148,114,160]]},
+  alpha:{h:[22,166],n:[42,170],p:[100,172],le:[62,176],lh:[82,177],re:[64,176],rh:[84,177],lk:[132,152],lf:[168,146],rk:[134,152],rf:[170,146],toes:[[170,146,176,128]],props:{mat:1,pillow:[118,152,66,28],txt:[178,92,"A B C"]}},
+  elev:{h:[18,168],n:[38,172],p:[92,174],le:[56,178],lh:[76,178],re:[58,178],rh:[78,178],lk:[124,132],lf:[166,108],rk:[126,132],rf:[168,108],toes:[[168,108,170,90]],props:{mat:1,pillow:[110,128,80,52]},arrows:[[40,120,40,90]]},
+  seatpump:{h:[86,48],n:[86,68],p:[84,122],le:[96,95],lh:[108,120],re:[98,95],rh:[110,122],lk:[128,124],lf:[130,178],rk:[130,124],rf:[132,178],toes:[[132,178,146,164]],props:{chair:[46,125]},arrows:[[160,144,160,170],[160,170,160,144]]},
+  march:{h:[86,48],n:[86,68],p:[84,122],le:[96,95],lh:[108,120],re:[98,95],rh:[110,122],lk:[128,124],lf:[130,178],rk:[130,100],rf:[136,148],toes:[[136,148,150,148]],props:{chair:[46,125]},arrows:[[156,120,156,96]]}
 };
 function figSVG(key){
   var P=FIGS[key];if(!P)return "";
@@ -260,12 +350,15 @@ function figSVG(key){
   if(pr.counter)o+='<rect x="'+(pr.counter-46)+'" y="96" width="50" height="86" rx="3" fill="none" stroke="'+PC+'" stroke-width="4"/>';
   if(pr.step)o+='<rect x="'+pr.step[0]+'" y="'+(182-pr.step[2])+'" width="'+pr.step[1]+'" height="'+pr.step[2]+'" rx="3" fill="'+PC+'"/>';
   if(pr.chair){var c=pr.chair,bx=c[2]?c[0]+80:c[0];o+=L(c[0]+','+c[1],(c[0]+80)+','+c[1],null,PC,6)+L(bx+','+(c[1]-55),bx+','+182,null,PC,6)+L((c[2]?c[0]:c[0]+80)+','+c[1],(c[2]?c[0]:c[0]+80)+',182',null,PC,6);}
+  if(pr.pillow){var w=pr.pillow;o+='<rect x="'+w[0]+'" y="'+w[1]+'" width="'+w[2]+'" height="'+w[3]+'" rx="12" fill="#94a3b8" opacity=".55"/>';}
   if(pr.band)o+='<path d="M'+pr.band[0]+' L'+pr.band[1]+'" stroke="#16a34a" stroke-width="4" stroke-dasharray="6 4"/>';
   o+=L(P.n,P.le,P.lh,FAR)+L(P.p,P.lk,P.lf,FAR);
   o+=P.spine?'<path d="M'+P.n+' Q'+P.spine+' '+P.p+'" stroke="'+NEAR+'" stroke-width="10" stroke-linecap="round" fill="none"/>':L(P.n,P.p,null,NEAR,10);
   o+=L(P.p,P.rk,P.rf,NEAR)+L(P.n,P.re,P.rh,NEAR);
   (P.toes||[]).forEach(function(t){o+=L(t[0]+','+t[1],t[2]+','+t[3],null,"#16a34a",7);});
   o+='<circle cx="'+P.h[0]+'" cy="'+P.h[1]+'" r="13" fill="'+NEAR+'"/>';
+  if(pr.circle){var q=pr.circle;o+='<g class="arw"><circle cx="'+q[0]+'" cy="'+q[1]+'" r="'+q[2]+'" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="10 6"/><path d="M'+(q[0]+q[2]-6)+','+(q[1]-6)+' l6,8 l6,-8" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/></g>';}
+  if(pr.txt)o+='<text x="'+pr.txt[0]+'" y="'+pr.txt[1]+'" text-anchor="end" font-size="20" font-weight="800" fill="#f59e0b" font-family="sans-serif">'+pr.txt[2]+'</text>';
   (P.arrows||[]).forEach(function(a){o+='<g class="arw"><line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+a[2]+'" y2="'+a[3]+'" stroke="#f59e0b" stroke-width="4" marker-end="url(#ah)"/></g>';});
   return o+'<defs><marker id="ah" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#f59e0b"/></marker></defs></svg>';
 }
@@ -274,7 +367,7 @@ function figSVG(key){
    GUIDED WORKOUT WIZARD
 ------------------------------------------------------------------- */
 var W={list:null,i:0,set:0,left:0,tick:null};
-var NAMES={dayA:"Day A",dayB:"Day B",recovery:"Sunday Recovery"};
+var NAMES={dayA:"Day A",dayB:"Day B",recovery:"Sunday Recovery",edAM:"Morning Circulation",edPM:"Evening Drain",edDesk:"Sitting Break"};
 function totalSets(ex){return ex.wz.sets*(ex.wz.sides?2:1);}
 function fmt(t){var m=Math.floor(t/60),s=t%60;return m+":"+(s<10?"0":"")+s;}
 function beep(){try{var a=new(window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.frequency.value=880;o.connect(g);g.connect(a.destination);g.gain.value=.3;o.start();o.stop(a.currentTime+.6);}catch(e){}try{navigator.vibrate&&navigator.vibrate([300,100,300]);}catch(e){}}
@@ -288,10 +381,10 @@ function showEx(){
   var ex=arr[W.i],z=ex.wz,n=totalSets(ex);W.left=z.secs||0;
   document.getElementById("wstep").textContent=NAMES[W.list]+" · "+(W.i+1)+" of "+arr.length;
   var pills="";for(var k=0;k<n;k++){var lbl=z.sides?(k%2?"R":"L")+(Math.floor(k/2)+1):"Set "+(k+1);pills+='<span class="'+(k<W.set?"done":k==W.set?"cur":"")+'">'+(k<W.set?"✓ ":"")+lbl+'</span>';}
-  var dose=z.secs?(z.secs>=60?fmt(z.secs)+" hold":z.secs+" sec"):(typeof z.reps=="number"?z.reps+" reps":z.reps);
+  var dose=z.label?z.label:z.secs?(z.secs>=60?fmt(z.secs)+" hold":z.secs+" sec"):(typeof z.reps=="number"?z.reps+" reps":z.reps);
   var setTxt=z.sets>1?(z.sets+(z.sets>1?" sets":" set")+(z.sides?" per side":"")):(z.sides?"each side":"");
-  var h='<div class="wtitle"><h2>'+esc(ex.title)+'</h2><span class="badge '+ex.pri+'">'+PRI[ex.pri].icon+' '+PRI[ex.pri].label.replace(" Priority","")+'</span></div>'+
-    '<div class="fig" id="wfig">'+figSVG(ex.key)+'</div>'+
+  var h='<div class="wtitle"><h2>'+esc(ex.title)+'</h2><span class="badge '+(PRI[ex.pri].cls||ex.pri)+'">'+PRI[ex.pri].icon+' '+PRI[ex.pri].label.replace(" Priority","")+'</span></div>'+
+    '<div class="fig" id="wfig">'+figSVG(ex.fig||ex.key)+'</div>'+
     '<div class="vlinks">'+(ex.id?'<button id="wvid">\u25b6 Watch Video</button><a href="https://www.youtube.com/watch?v='+ex.id+'" target="_blank" rel="noopener">Open in YouTube \u2197</a>':'<a href="https://www.youtube.com/results?search_query='+encodeURIComponent(ex.q)+'" target="_blank" rel="noopener">\u25b6 Find a Video \u2197</a>')+'</div>'+
     '<div class="dose" style="'+(typeof z.reps=="string"?"font-size:1.15rem":"")+'">'+esc(dose)+(setTxt?' <small style="font-size:1rem;color:var(--muted)">× '+setTxt+'</small>':'')+'</div>'+
     '<div class="cue">'+esc(z.cue)+'</div><div class="sets">'+pills+'</div>';
@@ -323,7 +416,7 @@ function showDone(){
 function toggleVideo(btn){
   var ex=EXERCISES[W.list][W.i],f=document.getElementById("wfig");
   if(f.classList.toggle("vid")){f.innerHTML='<iframe title="'+esc(ex.title)+' video" src="https://www.youtube.com/embed/'+ex.id+'?rel=0&playsinline=1&autoplay=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';btn.textContent="\u25a3 Show Graphic";}
-  else{f.innerHTML=figSVG(ex.key);btn.textContent="\u25b6 Watch Video";}
+  else{f.innerHTML=figSVG(ex.fig||ex.key);btn.textContent="\u25b6 Watch Video";}
 }
 document.addEventListener("click",function(e){
   var t=e.target.closest&&e.target.closest("button");if(!t)return;
@@ -342,7 +435,7 @@ document.addEventListener("click",function(e){
 function dayKey(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
 function getLog(){try{return JSON.parse(localStorage.getItem("mob_log")||"[]");}catch(e){return [];}}
 function renderProgress(){
-  var log=getLog(),byDay={},sessions={},now=new Date(),today=dayKey(now),titles={};
+  var plans=PROGRAMS[curProg()],log=getLog().filter(function(r){return plans.indexOf(r.plan)>=0;}),byDay={},sessions={},now=new Date(),today=dayKey(now),titles={};
   Object.keys(EXERCISES).forEach(function(l){EXERCISES[l].forEach(function(e){titles[e.key]=e.title;});});
   log.forEach(function(r){var d=dayKey(new Date(r.t));(byDay[d]=byDay[d]||[]).push(r);
     var sk=d+"|"+r.plan;if(!sessions[sk])sessions[sk]={d:d,plan:r.plan,keys:{},t:r.t};sessions[sk].keys[r.key]=1;if(r.t>sessions[sk].t)sessions[sk].t=r.t;});
@@ -364,12 +457,12 @@ function renderProgress(){
   document.getElementById("heat").innerHTML=cells;
   // per-plan bars
   var cnt={};sl.forEach(function(x){if(new Date(x.d+"T00:00")>=m30)cnt[x.plan]=(cnt[x.plan]||0)+1;});
-  var mx=Math.max(1,cnt.dayA||0,cnt.dayB||0,cnt.recovery||0);
-  document.getElementById("planBars").innerHTML=Object.keys(NAMES).map(function(p){var v=cnt[p]||0;
+  var mx=Math.max.apply(null,[1].concat(plans.map(function(p){return cnt[p]||0;})));
+  document.getElementById("planBars").innerHTML=plans.map(function(p){var v=cnt[p]||0;
     return '<div><span>'+NAMES[p]+'</span><em style="width:'+(v/mx*100)+'%"></em><strong>'+v+'</strong></div>';}).join("");
   // history
   document.getElementById("hist").innerHTML=sl.length?sl.slice(0,10).map(function(x){var n=Object.keys(x.keys).length,tot=EXERCISES[x.plan].length;
-    return '<li><div><strong>'+NAMES[x.plan]+'</strong> <span>'+new Date(x.d+"T00:00").toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})+'</span></div><span>'+(n>=tot?'✅ ':'')+n+' / '+tot+' exercises</span></li>';}).join(""):'<li class="empty">No workouts logged yet. Start a guided workout above.</li>';
+    return '<li><div><strong>'+NAMES[x.plan]+'</strong> <span>'+new Date(x.d+"T00:00").toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})+'</span></div><span>'+(n>=tot?'✅ ':'')+n+' / '+tot+' exercises</span></li>';}).join(""):'<li class="empty">No workouts logged yet for this program. Start a guided workout above.</li>';
   W.byDay=byDay;W.titles=titles;
 }
 document.getElementById("heat").addEventListener("click",function(e){
@@ -380,7 +473,8 @@ document.getElementById("heat").addEventListener("click",function(e){
   cap.textContent=lbl+": "+(rs.length?rs.map(function(r){return W.titles[r.key]||r.key;}).join(", "):"rest day");
 });
 render();
-renderProgress();
+setProg(curProg());
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-prog-set]");if(b){setProg(b.dataset.progSet);window.scrollTo(0,0);}});
 </script>
 </body>
 </html>
